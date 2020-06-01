@@ -3,5 +3,6 @@
         "DISCORD" : {
             "TOKEN" : "put your token here"
         }
-    }
+    },
+    "DEVELOPERS" : [ put your user ID here ]
 }
