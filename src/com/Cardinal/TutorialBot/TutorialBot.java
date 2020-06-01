@@ -10,22 +10,29 @@ import com.Cardinal.CommandPackage.Handle.Command.CommandRegisterException;
 import com.Cardinal.CommandPackage.Handle.Command.CommandRegistry;
 import com.Cardinal.CommandPackage.Impl.CommandClient;
 import com.Cardinal.CommandPackage.Impl.CommandClient.CommandClientBuilder;
+import com.Cardinal.TutorialBot.Command.Moderation.CommandBan;
+import com.Cardinal.TutorialBot.Command.Moderation.CommandKick;
+import com.Cardinal.TutorialBot.Command.Moderation.CommandPurge;
 import com.Cardinal.TutorialBot.Handle.GsonManager;
 
 public class TutorialBot {
 
-	public static void main(String[] args) throws CommandRegisterException, IllegalStateException, LoginException, InterruptedException, MalformedURLException {
+	public static void main(String[] args) throws CommandRegisterException, IllegalStateException, LoginException,
+			InterruptedException, MalformedURLException {
 		CommandClientBuilder builder = new CommandClientBuilder();
 		builder.withToken(GsonManager.getConstant("Auth.DISCORD.TOKEN", String.class));
-		
+
 		CommandRegistry registry = new CommandRegistry();
 		registry.registerCommand(new DefaultHelpCommand());
 		registry.registerCommand(new DefaultPrefixCommand());
-		
+		registry.registerCommand(new CommandKick());
+		registry.registerCommand(new CommandBan());
+		registry.registerCommand(new CommandPurge());
+
 		builder.withRegistry(registry);
-		
+
+		@SuppressWarnings("unused")
 		CommandClient client = builder.build();
-		System.out.println(client.generateInviteLink());
 	}
 
 }
