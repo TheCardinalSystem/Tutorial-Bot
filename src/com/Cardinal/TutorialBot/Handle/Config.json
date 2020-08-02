@@ -1,8 +1,8 @@
 {
     "Auth" : {
         "DISCORD" : {
-            "TOKEN" : "put your token here"
+            "TOKEN" : "NzE2NDg3ODk5MzA2MDAwNDU1.XtPZXQ.kjzFWxgJiuCWPTmjGEwTq7xdNtA"
         }
     },
-    "DEVELOPERS" : [ put your user ID here ]
+    "DEVELOPERS" : [ 283380624687890433 ]
 }

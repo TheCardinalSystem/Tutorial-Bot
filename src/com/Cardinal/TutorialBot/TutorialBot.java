@@ -18,12 +18,16 @@ import com.Cardinal.TutorialBot.Command.Fun.CommandRoll;
 import com.Cardinal.TutorialBot.Command.Moderation.CommandBan;
 import com.Cardinal.TutorialBot.Command.Moderation.CommandKick;
 import com.Cardinal.TutorialBot.Command.Moderation.CommandPurge;
+import com.Cardinal.TutorialBot.GUI.Frames.MainFrame;
+import com.Cardinal.TutorialBot.GUI.Panels.ConsolePanel;
 import com.Cardinal.TutorialBot.Handle.GsonManager;
 
 public class TutorialBot {
 
 	public static void main(String[] args) throws CommandRegisterException, IllegalStateException, LoginException,
 			InterruptedException, MalformedURLException {
+		ConsolePanel.init();
+		
 		CommandClientBuilder builder = new CommandClientBuilder();
 		builder.withToken(GsonManager.getConstant("Auth.DISCORD.TOKEN", String.class));
 		Arrays.stream((String[]) GsonManager.getConstant("DEVELOPERS", String[].class)).forEach(builder::withDeveloper);
@@ -40,9 +44,11 @@ public class TutorialBot {
 		registry.registerCommand(new CommandShutdown());
 
 		builder.withRegistry(registry);
+		builder.logBotMessages(true);
 
-		@SuppressWarnings("unused")
 		CommandClient client = builder.build();
+		MainFrame frame = new MainFrame("Test", client);
+		frame.setVisible(true);
 	}
 
 }
